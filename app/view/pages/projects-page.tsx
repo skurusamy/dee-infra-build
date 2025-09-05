@@ -6,7 +6,7 @@ export default async function ProjectsPage() {
   const projects = await fetchProjects();
 
   return (
-    <section className="relative py-16 overflow-hidden">  {/* <- relative! */}
+    <section className="section relative py-16 overflow-hidden">  {/* <- relative! */}
 
       {/* Background layer */}
       <div aria-hidden className="absolute inset-0">

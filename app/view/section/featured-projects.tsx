@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { fetchProjects } from "../../services/project-service";
 
-const WRAP = "mr-auto w-full max-w-[1200px] pl-4 sm:pl-8 lg:pl-24 pr-4";
+const WRAP = "wrap";
 
 export default async function FeaturedProjects() {
   const projects = await fetchProjects();
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-gray-50 section">
       <div className={WRAP}>
         <h2 className="text-center text-3xl font-bold text-sky-700 mb-10">OUR FEATURED PROJECT</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">

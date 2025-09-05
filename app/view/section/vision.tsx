@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 
-const WRAP = "mr-auto w-full max-w-[1400px] pl-4 sm:pl-8 lg:pl-24 pr-4";
+const WRAP = "wrap";
 
 export default function Vision() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -25,7 +25,7 @@ export default function Vision() {
 
   return (
     // stacking context for the background
-    <section className="relative py-16 overflow-hidden">
+    <section className="section relative py-16 overflow-hidden">
       {/* Background image */}
       <Image
         src="/project-bg.png"

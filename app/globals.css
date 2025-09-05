@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+/* --- Global overflow guards --- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body, #__next {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;      /* modern */
+}
+@supports not (overflow-x: clip) {
+  html, body, #__next { overflow-x: hidden; }  /* fallback */
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -23,3 +39,12 @@
 html { scroll-behavior: smooth; }
 body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
 
+/* Full-bleed sections should never exceed viewport width */
+.full-bleed { width: 100%; max-width: 100%; overflow-x: hidden; }
+
+/* Utility: wrap (symmetric gutters) — use this everywhere you wrap content */
+.wrap {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 16px;
+}

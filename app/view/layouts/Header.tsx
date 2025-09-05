@@ -1,8 +1,9 @@
 "use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { MouseEvent } from "react";
+import { useState, type MouseEvent } from "react";
 
 const NAV = [
   { href: "/", label: "Home" },
@@ -19,64 +20,110 @@ function scrollToQuote() {
 
 export default function Header() {
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
 
-  const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
-    // If we're already on the homepage, prevent navigation and scroll
+  const handleQuoteClick = (e: MouseEvent<HTMLAnchorElement>) => {
     if (pathname === "/" || pathname?.startsWith("/?")) {
       e.preventDefault();
+      setOpen(false);
       scrollToQuote();
     }
   };
 
   return (
-    <header className="fixed top-1 left-1 right-0 z-50">
-      <div className="mx-auto max-w-[1200px] px-4">
-        <div className="flex items-center justify-between gap-4 rounded-[24px] border border-white/40 bg-white/60 backdrop-blur-xl shadow-lg px-4 sm:px-6 py-2">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 shrink-0">
-            <Image
-              src="/logo.png"
-              alt="DEE INFRA BUILDTEC"
-              width={250}
-              height={200}
-              className="h-14 md:h-16 w-auto"
-            />
-          </Link>
+    <>
+      {/* Header bar */}
+      <header className="fixed top-1 left-1 right-1 z-[200]">
+        <div className="mx-auto max-w-[1200px] px-4">
+          <div className="flex items-center justify-between gap-3 rounded-[24px] border border-white/40 bg-white/70 backdrop-blur-xl shadow-lg px-4 py-2">
+            {/* Logo */}
+            <Link href="/" className="shrink-0" aria-label="DEE INFRA BUILDTEC Home">
+              <Image src="/logo.png" alt="DEE INFRA BUILDTEC" width={220} height={80} className="h-14 md:h-16 w-auto" />
+            </Link>
 
-          {/* Centered nav */}
-          <nav className="hidden md:block">
-            <ul className="flex items-center gap-10 text-[18px]">
-              {NAV.map((n) => (
-                <li key={n.href}>
-                  <Link
-                    href={n.href}
-                    className={`pb-1 transition ${
-                      pathname === n.href
-                        ? "text-sky-700 font-semibold border-b-2 border-sky-600"
-                        : "text-gray-800 hover:text-sky-700"
-                    }`}
-                  >
-                    {n.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+            {/* Desktop nav */}
+            <nav className="hidden md:block" aria-label="Primary">
+              <ul className="flex items-center gap-8 text-[18px]">
+                {NAV.map((n) => (
+                  <li key={n.href}>
+                    <Link
+                      href={n.href}
+                      className={`pb-1 transition ${
+                        pathname === n.href
+                          ? "text-sky-700 font-semibold border-b-2 border-sky-600"
+                          : "text-gray-800 hover:text-sky-700"
+                      }`}
+                    >
+                      {n.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
 
-          {/* CTA */}
-          <Link
-            href="/#quote"
-            prefetch={false}
-            onClick={handleClick}
-            className="group inline-flex items-center gap-2 rounded-[999px] bg-sky-600 px-5 py-2 text-white font-semibold hover:bg-sky-700 transition"
-          >
-            GET FREE QUOTE
-            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/25 group-hover:bg-white/35">
-              ↗
-            </span>
-          </Link>
+            {/* Desktop CTA */}
+            <Link
+              href="/#quote"
+              prefetch={false}
+              onClick={handleQuoteClick}
+              className="hidden md:inline-flex items-center gap-2 rounded-full bg-sky-600 px-5 py-2 text-white font-semibold hover:bg-sky-700 transition"
+            >
+              GET FREE QUOTE <span aria-hidden>↗</span>
+            </Link>
+
+            {/* Mobile controls */}
+            <div className="md:hidden flex items-center gap-2">
+              <Link
+                href="/#quote"
+                prefetch={false}
+                onClick={handleQuoteClick}
+                className="inline-flex items-center gap-1 rounded-full bg-sky-600 px-3 py-2 text-white text-sm font-semibold hover:bg-sky-700 transition"
+              >
+                Quote <span aria-hidden>↗</span>
+              </Link>
+
+              <button
+                type="button"
+                aria-label="Toggle menu"
+                aria-expanded={open}
+                onClick={() => setOpen((v) => !v)}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/80"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 6h16M4 12h16M4 18h16" stroke="#111" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile menu panel */}
+      <div
+        className={`md:hidden fixed inset-x-1 top-[76px] z-[190] transition ${
+          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="mx-auto max-w-[1200px] px-4">
+          <div className="rounded-2xl border border-white/40 bg-white/95 shadow-xl overflow-hidden">
+            <nav aria-label="Mobile">
+              <ul className="flex flex-col">
+                {NAV.map((n) => (
+                  <li key={n.href}>
+                    <Link
+                      href={n.href}
+                      onClick={() => setOpen(false)}
+                      className="flex items-center justify-between px-4 py-3 text-[16px] text-gray-800 hover:text-sky-700"
+                    >
+                      {n.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
         </div>
       </div>
-    </header>
+    </>
   );
 }

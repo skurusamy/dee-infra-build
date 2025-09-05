@@ -1,10 +1,10 @@
 import Image from "next/image";
 
-const WRAP = "mr-auto w-full max-w-[1400px] pl-4 sm:pl-8 lg:pl-24 pr-4";
+const WRAP = "wrap";
 
 export default function AboutCompany() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white section">
       <div className={WRAP}>
         {/* TOP ROW: Photo • Copy • Sketch */}
         <div className="grid gap-10 md:grid-cols-12 items-start">

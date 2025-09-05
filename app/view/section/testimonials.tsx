@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { fetchTestimonials } from "../../services/testimonial-service";
 
-const WRAP = "mr-auto w-full max-w-[1200px] pl-4 sm:pl-8 lg:pl-24 pr-4";
+const WRAP = "wrap";
 
 export default function Testimonials() {
   const [items, setItems] = useState<any[]>([]);
@@ -15,7 +15,7 @@ export default function Testimonials() {
   const t = items[i];
 
   return (
-    <section className="py-16 bg-neutral-900 text-white">
+    <section className="section py-16 bg-neutral-900 text-white">
       <div className={WRAP}>
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-3xl font-bold">WHAT OUR CLIENTS SAY</h2>
