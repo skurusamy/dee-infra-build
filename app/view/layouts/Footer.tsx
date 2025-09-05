@@ -93,8 +93,7 @@ export default function Footer() {
             prefetch={false}
             //onClick={handleClick}
             className="group inline-flex items-center gap-2 rounded-[999px] bg-sky-600 px-5 py-2 text-white font-semibold hover:bg-sky-700 transition"
-          >
-            ↗
+          > ↗
           </Link>
         </div>
       </div>

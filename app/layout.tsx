@@ -9,13 +9,12 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className="min-h-dvh antialiased text-gray-900">
+    <html lang="en" className="scroll-smooth antialiased [text-rendering:optimizeLegibility]">
+      <body className="min-h-screen bg-white text-gray-900">
         <Header />
-        {/* no container here — sections decide their own width */}
-        <main>{children}</main>
+        {children}
         <Footer />
-      </body>
+        </body>
     </html>
   );
 }

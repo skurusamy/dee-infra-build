@@ -1,12 +1,10 @@
 import QuoteForm from "../components/get-quotes-form";
 
-const WRAP = "mr-auto w-full max-w-[1200px] pl-4 sm:pl-8 lg:pl-24 pr-4";
-
 export default function GetQuote() {
   return (
     <section id="quote" className="relative py-20 bg-white overflow-hidden">
       <div aria-hidden className="absolute inset-0 opacity-10 bg-[url('/project-bg.png')] bg-cover bg-center" />
-      <div className={`relative ${WRAP}`}>
+      <div className="relative mx-auto w-full max-w-[1200px] px-4 sm:px-8 lg:px-24">
         <h2 className="text-center text-3xl md:text-4xl font-extrabold text-sky-700 mb-4">
           READY TO START YOUR PROJECT
         </h2>
