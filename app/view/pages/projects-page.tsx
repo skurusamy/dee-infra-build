@@ -11,7 +11,7 @@ export default async function ProjectsPage() {
       {/* Background layer */}
       <div aria-hidden className="absolute inset-0">
         <Image
-          src="/project-bg.png"     // put file in /public/project-bg.png
+          src="/project-bg.png"    
           alt=""
           fill
           sizes="100vw"

@@ -4,7 +4,7 @@ import ProjectsPage from "../view/pages/projects-page";
 import ExpertisePage from "../view/pages/expertise-page";
 import CompanyPage from "../view/pages/company-page";
 import ContactPage from "../view/pages/contact-page";
-import GetQuotesPage from "../view/pages/get-quotes-page";
+import GetQuotesPage from "../view/section/get-quotes-form";
 import { notFound } from "next/navigation";
 
 const ROUTES: Record<string, React.ComponentType<any>> = {
@@ -49,8 +49,7 @@ export async function generateMetadata(
     projects: "Projects",
     expertise: "Expertise",
     company: "Company",
-    contact: "Contact",
-    quote: "Get a Quote",
+    contact: "Contact"
   };
   return { title: titles[key] ? `DEE Infra | ${titles[key]}` : "DEE Infra" };
 }
